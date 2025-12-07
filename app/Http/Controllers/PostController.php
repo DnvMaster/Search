@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,13 @@ class PostController extends Controller
     {
         $posts = Post::all();
         return view('frontend.index', compact('posts'));
+    }
+
+    public function create()
+    {
+        $createPosts = Category::latest()->get();
+        return view('frontend.add_post', compact('createPosts'));
+        
     }
 
     public function search(Request $request)
@@ -30,14 +38,6 @@ class PostController extends Controller
             $query->where('name','like',"%$search%");
         })->get();
         return view('frontend.index',compact('posts','search'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**

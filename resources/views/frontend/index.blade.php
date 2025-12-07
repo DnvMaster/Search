@@ -13,7 +13,7 @@
         <hr>
         <div class="row py-2">
             <div class="col-md-6">
-                <h2><a href="" class="btn btn-success">{{ __('Создать новый пост') }}</a></h2>
+                <h2><a href="{{ route('add.post')}}" class="btn btn-success">{{ __('Создать новый пост') }}</a></h2>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
