@@ -16,6 +16,22 @@ class PostController extends Controller
         return view('frontend.index', compact('posts'));
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $posts = Post::where(function($query) use($search) {
+            $query->where('title','like',"%$search%")
+            ->orWhere('description','like',"%$search%");
+        })
+        ->orWhereHas('category', function($query) use($search) {
+            $query->where('name','like',"%$search%");
+        })
+        ->orWhereHas('user', function($query) use($search) {
+            $query->where('name','like',"%$search%");
+        })->get();
+        return view('frontend.index',compact('posts','search'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

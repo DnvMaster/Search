@@ -20,7 +20,7 @@
                     <form method="get" action="/search">
                         @csrf
                         <div class="input-group">
-                            <input class="form-control" name="search" placeholder="{{ __('Найни по категории или по пользователю') }}">
+                            <input class="form-control" name="search" placeholder="{{ __('Найни по категории или по пользователю') }}" value="{{ isset($search) ? $search : ''}}">
                             <button type="submit" class="btn btn-primary">{{ __('Поиск') }}</button>
                         </div>
                     </form>
